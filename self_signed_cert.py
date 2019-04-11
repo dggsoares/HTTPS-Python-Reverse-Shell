@@ -35,7 +35,7 @@ def create_self_signed_cert():
 
     with open(CERT_FILE, "wb") as output_cert:
         output_cert.write(cert.public_bytes(encoding=serialization.Encoding.PEM))
-    with  open(KEY_FILE, "wb") as output_key:
+    with open(KEY_FILE, "wb") as output_key:
         output_key.write(key.private_bytes(encoding=serialization.Encoding.PEM,
                                            format=serialization.PrivateFormat.TraditionalOpenSSL,
                                            encryption_algorithm=serialization.NoEncryption())

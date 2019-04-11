@@ -1,4 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import ssl
 import time
@@ -43,8 +45,8 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         length = int(self.headers['Content-Length'])
-        command_output = self.rfile.read(length).decode()
-        print(command_output)
+        command_output = self.rfile.read(length)
+        print(command_output.decode())
 
 
 if __name__ == '__main__':

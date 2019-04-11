@@ -5,7 +5,7 @@ import time
 import os, cgi
 
 HOST_NAME = '0.0.0.0'
-PORT_NUMBER = 4433
+PORT = 4433
 
 
 class Server(BaseHTTPRequestHandler):
@@ -48,12 +48,12 @@ class Server(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    httpd = HTTPServer((HOST_NAME, PORT_NUMBER), Server)
+    httpd = HTTPServer((HOST_NAME, PORT), Server)
     httpd.socket = ssl.wrap_socket(httpd.socket, certfile='selfsigned.pem', keyfile='private.pem')
 
     try:
-        print(f'[+] {time.asctime()} Server is RUNNING! - {HOST_NAME}:{PORT_NUMBER}')
+        print(f'[+] {time.asctime()} Server is RUNNING! - {HOST_NAME}:{PORT}')
         httpd.serve_forever()
     except KeyboardInterrupt:
         httpd.server_close()
-        print(f'[x] {time.asctime()} Server is DOWN! - {HOST_NAME}:{PORT_NUMBER}')
+        print(f'[x] {time.asctime()} Server is DOWN! - {HOST_NAME}:{PORT}')

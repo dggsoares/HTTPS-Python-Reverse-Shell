@@ -64,11 +64,12 @@ def get(command, session, base_url):
 
 def put(command, session, base_url):
     put, path = command.split('&')
-    post_response = session.post(base_url + path, headers={'Function': 'put_file'})
+    post_url = base_url + path
+    post_url_response = session.post(post_url, headers={'Function': 'put_file'})
 
     file_name = path.split('/')[-1]
     with open(file_name, 'wb') as local_file:
-        for chunk in post_response.iter_content(chunk_size=128):
+        for chunk in post_url_response.iter_content(chunk_size=128):
             local_file.write(chunk)
 
 

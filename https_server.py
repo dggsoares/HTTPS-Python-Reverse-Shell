@@ -2,7 +2,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import ssl
 import time
-import os, cgi
+import cgi
 
 HOST_NAME = '0.0.0.0'
 PORT = 4433

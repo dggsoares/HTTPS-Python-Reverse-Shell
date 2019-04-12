@@ -116,35 +116,3 @@ if __name__ == '__main__':
 
     arguments = parser.parse_args()
     main(arguments)
-
-
-https://github.com/pexpect/pexpect/issues/439
-https://bitbucket.org/weyou/winpexpect/wiki/Home
-https://github.com/pexpect/pexpect/issues/328
-http://techi2teach.blogspot.com/2011/01/how-to-get-python-pexpect-module-on.html
-https://pybit.es/pexpect.html
-http://www.bx.psu.edu/~nate/pexpect/pexpect.html
-https://www.slothparadise.com/script-interactive-programs-tuis-python-pexpect/
-https://pexpect.readthedocs.io/en/stable/api/popen_spawn.html#pexpect.popen_spawn.PopenSpawn.__init__
-
-
-import os, sys, io, pexpect, pexpect.popen_spawn
-child = pexpect.popen_spawn.PopenSpawn("echo Hello World!")
-child.wait()
-0
-child.read()
-b'Hello World!\n
-
-child = pexpect.popen_spawn.PopenSpawn('cmd')
-child.send('ipconfig')
-child.expect('Wireless', timeout=None)
-
-
-
-cmd = subprocess.Popen(shell=True)
-
-p = subprocess.Popen('cmd', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-p.stdin.write(b'echo hello world\n')
-p.stdout.readline()
-p.stdin.write(b'ipconfig')
-p.stdout.readline()

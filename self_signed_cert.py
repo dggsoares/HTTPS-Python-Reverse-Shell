@@ -6,8 +6,8 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
-CERT_FILE = "selfsigned.pem"
-KEY_FILE = "private.pem"
+CERT_FILE = "cert.pem"
+KEY_FILE = "key.pem"
 
 
 def create_self_signed_cert():

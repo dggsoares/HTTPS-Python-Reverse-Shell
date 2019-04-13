@@ -171,7 +171,7 @@ if __name__ == '__main__':
                                      epilog=f'Built by {__author__}. Version {__date__}',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter
                                      )
-    parser.add_argument('-b', '--bind', help='IP for bind server', required=True, default='0.0.0.0')
+    parser.add_argument('-b', '--bind', help='IP for bind server', default='0.0.0.0')
     parser.add_argument('-p', '--port', help='Port for bind service', type=int, default=443)
     parser.add_argument('-c', '--cert', help='X.509 file', default='cert.pem')
     parser.add_argument('-k', '--key', help='Key for X.509 file', default='key.pem')

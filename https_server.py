@@ -154,9 +154,9 @@ class Server(BaseHTTPRequestHandler):
 
 
 def main(args):
-    create_self_signed_cert(args.cert, args.key)
+    create_self_signed_cert(args.cert, args.pkey)
     httpd = HTTPServer((args.bind, args.port), Server)
-    httpd.socket = ssl.wrap_socket(httpd.socket, certfile=args.cert, keyfile=args.key)
+    httpd.socket = ssl.wrap_socket(httpd.socket, certfile=args.cert, keyfile=args.pkey)
 
     try:
         print(f'[+] {time.asctime()} Server is RUNNING! - {args.bind}:{args.port}')
@@ -173,7 +173,7 @@ if __name__ == '__main__':
                                      )
     parser.add_argument('-b', '--bind', help='IP for bind server', default='0.0.0.0')
     parser.add_argument('-p', '--port', help='Port for bind service', type=int, default=443)
-    parser.add_argument('-c', '--cert', help='X.509 file', default='cert.pem')
-    parser.add_argument('-k', '--key', help='Key for X.509 file', default='key.pem')
+    parser.add_argument('-c', '--cert', help='Filename of PEM certificate', default='cert.pem')
+    parser.add_argument('-k', '--pkey', help='Filename of PEM private key', default='key.pem')
     args = parser.parse_args()
     main(args)

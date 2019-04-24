@@ -113,8 +113,8 @@ if __name__ == '__main__':
                                      epilog=f'Built by {__author__}. Version {__date__}',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter
                                      )
-    parser.add_argument('-s', '--server', help='IP or hostname of the attacker machine', required=True)
-    parser.add_argument('-p', '--port', help='Port for HTTPS service of the attacker machine', default=443)
+    parser.add_argument('-s', '--server', help='IP or hostname of the attacker machine', default='127.0.0.1')
+    parser.add_argument('-p', '--port', help='Port for HTTPS service of the attacker machine', default=4443)
 
     args = parser.parse_args()
     main(args)

@@ -173,7 +173,7 @@ if __name__ == '__main__':
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter
                                      )
     parser.add_argument('-b', '--bind', help='IP for bind server', default='0.0.0.0')
-    parser.add_argument('-p', '--port', help='Port for bind service', type=int, default=443)
+    parser.add_argument('-p', '--port', help='Port for bind service', type=int, default=4443)
     parser.add_argument('-c', '--cert', help='Filename of PEM certificate', default='cert.pem')
     parser.add_argument('-k', '--pkey', help='Filename of PEM private key', default='key.pem')
     args = parser.parse_args()

@@ -60,7 +60,6 @@ def get(command, session, base_url):
                        }
             session.post(base_url, files=files, headers=headers)
     else:
-        # TODO verify the necessity of add specific header for error send server side
         session.post(url=base_url, data='[X] File not found!')
 
 

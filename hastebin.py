@@ -1,16 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import requests
 import base64
 import json
-
-http_proxy = "socks5://127.0.0.1:5689"
-https_proxy = "socks5://127.0.0.1:5689"
-ftp_proxy = "socks5://127.0.0.1:5689"
-
-proxyDict = {
-    "http": http_proxy,
-    "https": https_proxy,
-    "ftp": ftp_proxy
-}
 
 requests.packages.urllib3.disable_warnings()  # Disable SSL verify warnings
 
@@ -23,13 +16,13 @@ with open(FILENAME_INPUT, 'rb') as file_input, open(FILENAME_OUTPUT, 'wb') as fi
     print(f'[+] Reading {FILENAME_INPUT}')
     encoded_file = base64.b64encode(file_input.read())
     print(f'[+] {FILENAME_INPUT} encoded in Base64')
-    r = requests.post(URL, data=encoded_file, proxies=proxyDict, verify=False)
+    r = requests.post(URL, data=encoded_file, verify=False)
     link_file = json.loads(r.text)
     print(f'[+] Or this link: {"".join(URL.split("d")[:1]) + link_file["key"]}')
     print(f'[+] Access this link: {URL + link_file["key"]}')
 
     print(f'\n[XXX] Retrieving File [XXX]')
-    r = requests.get(URL + link_file["key"], verify=False, proxies=proxyDict)
+    r = requests.get(URL + link_file["key"], verify=False)
     print(f'[+] Fetching {URL + link_file["key"]}')
     file_encoded = json.loads(r.text)
     print(f'[+] Decoding in Base64')

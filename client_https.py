@@ -222,7 +222,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-s', '--server',
         help='IP or hostname of the attacker machine',
-        default='10.3.16.120')
+        default='127.0.0.1')
 
     parser.add_argument(
         '-p',
